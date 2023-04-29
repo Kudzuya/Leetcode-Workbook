@@ -423,3 +423,45 @@ var climbStairs = function(n) {
     }
     return arr[arr.length -1];
 };
+///////////////
+20.Valid Parentheses(js)
+
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+ 
+
+Example 1:
+
+Input: s = "()"
+Output: true
+
+var isValid = function(s) {
+    var c = {
+        '(': ')',
+        '{': '}',
+        '[': ']',
+    };
+    var stack = [];
+    for (var i = 0; i < s.length; i++) {
+        if (s.charAt(i) in c) {
+            stack.push(s.charAt(i));
+        } else {
+            var key = stack.pop();
+            if (c[key] === s.charAt(i)) {
+                continue;
+            } else {
+                return false;
+            }
+        }
+    }
+    if (stack.length === 0) {
+        return true;
+    } else {
+        return false;
+    }
+};
