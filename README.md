@@ -506,3 +506,25 @@ var removeDuplicates = function(nums) {
     return nums.length;
 };
 ///////////////
+28. Find the Index of the First Occurrence in a String(js)
+
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+ 
+
+Example 1:
+
+Input: haystack = "sadbutsad", needle = "sad"
+Output: 0
+Explanation: "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+var strStr = function(haystack, needle) {
+    const nL = needle.length
+    if (needle === "") 
+        return 0
+    for (let i = 0; i < haystack.length; i++){
+        if (haystack.slice(i, nL+i) === needle)
+            return (i)
+    }
+    return (-1)
+};
