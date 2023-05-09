@@ -1,0 +1,133 @@
+//////////// 27. Remove Element (JS)
+
+Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
+
+Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
+
+Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums. Return k. Custom Judge:
+
+The judge will test your solution with the following code:
+
+int[] nums = [...]; // Input array int val = ...; // Value to remove int[] expectedNums = [...]; // The expected answer with correct length. // It is sorted with no values equaling val.
+
+int k = removeElement(nums, val); // Calls your implementation
+
+assert k == expectedNums.length; sort(nums, 0, k); // Sort the first k elements of nums for (int i = 0; i < actualLength; i++) { assert nums[i] == expectedNums[i]; } If all assertions pass, then your solution will be accepted.
+
+Example 1:
+
+Input: nums = [3,2,2,3], val = 3 Output: 2, nums = [2,2,,] Explanation: Your function should return k = 2, with the first two elements of nums being 2. It does not matter what you leave beyond the returned k (hence they are underscores).
+
+var removeElement = function(nums, val) { for (let i=0; i<nums.length;i++){ if( nums[i] ===val) { nums.splice(i,1); i =-1; } } }; 
+
+///////// 70. Climbing Stairs (JS)
+
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+Example 1:
+
+Input: n = 2 Output: 2 Explanation: There are two ways to climb to the top.
+
+1 step + 1 step
+2 steps
+var climbStairs = function(n) { if(n == 1) return 1; if(n==2) return 2; let arr = [1,2] for(let i=2; i<n;i++) { arr.push(arr[i-1] + arr[i-2]); } return arr[arr.length -1]; }; 
+
+/////////////// 20.Valid Parentheses(js)
+
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets. Open brackets must be closed in the correct order. Every close bracket has a corresponding open bracket of the same type.
+
+Example 1:
+
+Input: s = "()" Output: true
+
+var isValid = function(s) { var c = { '(': ')', '{': '}', '[': ']', }; var stack = []; for (var i = 0; i < s.length; i++) { if (s.charAt(i) in c) { stack.push(s.charAt(i)); } else { var key = stack.pop(); if (c[key] === s.charAt(i)) { continue; } else { return false; } } } if (stack.length === 0) { return true; } else { return false; } }; 
+
+/////////////// 21. Merge Two Sorted Lists(js)
+
+You are given the heads of two sorted linked lists list1 and list2.
+
+Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
+
+Return the head of the merged linked list.
+
+Example 1: Input: list1 = [1,2,4], list2 = [1,3,4] Output: [1,1,2,3,4,4]
+
+var mergeTwoLists = function (l1, l2) { if (!l1) return l2; else if (!l2) return l1; else if (l1.val <= l2.val) { l1.next = mergeTwoLists(l1.next, l2); return l1; } else { l2.next = mergeTwoLists(l1, l2.next); return l2 } }; 
+
+/////////////// 26. Remove Duplicates from Sorted Array(js)
+
+Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
+
+var removeDuplicates = function(nums) { for (let i = 0; i < nums.length; i++) { if (nums[i] === nums[i + 1]) { nums.splice(i, 1); i--; } } return nums.length; }; /////////////// 28. Find the Index of the First Occurrence in a String(js)
+
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+Example 1:
+
+Input: haystack = "sadbutsad", needle = "sad" Output: 0 Explanation: "sad" occurs at index 0 and 6. The first occurrence is at index 0, so we return 0. var strStr = function(haystack, needle) { const nL = needle.length if (needle === "") return 0 for (let i = 0; i < haystack.length; i++){ if (haystack.slice(i, nL+i) === needle) return (i) } return (-1) }; 
+
+/////////////////// 35. Search Insert Position(js)
+
+Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+You must write an algorithm with O(log n) runtime complexity.
+
+Example 1:
+
+Input: nums = [1,3,5,6], target = 5 Output: 2
+
+var searchInsert = function(nums, target) { // includes,indexOf,rest operator,arrow function,sorting via sort method if(nums.includes(target)) //includes method return nums.indexOf(target); //returns index method// return [...nums, target].sort((a,b) => a-b).indexOf(target); //return where it shold be inserted//
+
+}; 
+
+//////////////// 58. Length of Last Word (JS)
+
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal substring consisting of non-space characters only.
+
+Example 1:
+
+Input: s = "Hello World" Output: 5 Explanation: The last word is "World" with length 5.
+
+///////// 58. Length of Last Word (JS)
+
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal substring consisting of non-space characters only.
+
+Example 1:
+
+Input: s = "Hello World" Output: 5 Explanation: The last word is "World" with length 5.
+
+Solution /**
+
+@param {string} s
+@return {number} */ var lengthOfLastWord = function(s) { return s.trim().split(" ").pop().length; }; 
+
+///////// 2620 counter (js) Given an integer n, return a counter function. This counter function initially returns n and then returns 1 more than the previous value every subsequent time it is called (n, n + 1, n + 2, etc).
+Example 1:
+
+Input: n = 10 ["call","call","call"] Output: [10,11,12] Explanation: counter() = 10 // The first time counter() is called, it returns n. counter() = 11 // Returns 1 more than the previous time. counter() = 12 // Returns 1 more than the previous time.
+
+var createCounter = function(n) { return ()=> n++ }; 
+
+/////////// 2665. Counter II (JS)
+
+Write a function createCounter. It should accept an initial integer init. It should return an object with three functions.
+
+The three functions are:
+
+increment() increases the current value by 1 and then returns it. decrement() reduces the current value by 1 and then returns it. reset() sets the current value to init and then returns it.
+
+Example 1:
+
+Input: init = 5, calls = ["increment","reset","decrement"] Output: [6,5,4] Explanation: const counter = createCounter(5); counter.increment(); // 6 counter.reset(); // 5 counter.decrement(); // 4
+
+function createCounter(init = 0) { cnt = init; return{ increment: () => cnt+=1, decrement: () => cnt-=1, reset: () => (cnt=init), } };
